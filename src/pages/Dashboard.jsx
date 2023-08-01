@@ -3,7 +3,7 @@ import { useState } from "react";
 // Data
 import mockData from "../assets/data.json";
 import timestamps from "../assets/timeStamps.json";
-
+import jsonData from '../assets/data.json';
 // Components
 import Dropdown from "../component/dropdown/Dropdown";
 import HeaderTitle from "../component/header-title/HeaderTitle";
@@ -20,10 +20,12 @@ const Dashboard = () => {
   const [selectedOrderDetails, setSelectedOrderDetails] = useState({});
   const [selectedOrderTimeStamps, setSelectedOrderTimeStamps] = useState({});
 
+  const returnedHits = jsonData.header.returnedHits;
+
   return (
     <div>
       <div className={styles.header}>
-        <HeaderTitle primaryTitle="Orders" secondaryTitle="5 orders" />
+        <HeaderTitle primaryTitle="Orders" secondaryTitle={returnedHits + ' Orders'} />
         <div className={styles.actionBox}>
           <Search
             value={searchText}
