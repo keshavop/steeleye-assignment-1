@@ -1,7 +1,10 @@
 import styles from "./ListHeaderCell.module.css";
 
-const ListHeaderCell = ({ children }) => {
-  return <th className={styles.cell}>{children}</th>;
+const ListHeaderCell = ({ children,currency }) => {
+  return <th className={styles.cell}>{children}
+  {currency !== "CUR" && <div className="currency">{currency}</div>}
+  </th>;
+
 };
 
 export default ListHeaderCell;

@@ -2,8 +2,8 @@ import { useState } from "react";
 
 // Data
 import mockData from "../assets/data.json";
-import timestamps from "../assets/timeStamps.json";
-import jsonData from '../assets/data.json';
+// import timestamps from "../assets/timeStamps.json";
+
 // Components
 import Dropdown from "../component/dropdown/Dropdown";
 import HeaderTitle from "../component/header-title/HeaderTitle";
@@ -15,17 +15,22 @@ import styles from "./Dashboard.module.css";
 import Card from "../component/card/Card";
 
 const Dashboard = () => {
-  const [currency, setCurrency] = useState("EUR");
+  const [currency, setCurrency] = useState("USD");
   const [searchText, setSearchText] = useState("");
   const [selectedOrderDetails, setSelectedOrderDetails] = useState({});
   const [selectedOrderTimeStamps, setSelectedOrderTimeStamps] = useState({});
 
-  const returnedHits = jsonData.header.returnedHits;
+  const filterRows = mockData.results.filter((row) =>
+    row["&id"].toLowerCase().includes(searchText.toLowerCase())
+  );
+
+  
+  const totalOrders = filterRows.length;
 
   return (
     <div>
       <div className={styles.header}>
-        <HeaderTitle primaryTitle="Orders" secondaryTitle={returnedHits + ' Orders'} />
+        <HeaderTitle primaryTitle="Orders" secondaryTitle={totalOrders + ' Orders'} />
         <div className={styles.actionBox}>
           <Search
             value={searchText}
@@ -49,7 +54,7 @@ const Dashboard = () => {
             title="Selected Order Timestamps"
           />
         </div>
-        <List rows={mockData.results} />
+        <List rows={filterRows} currency={currency} selectedOrderDetails={setSelectedOrderDetails} selectedOrderTimeStamps={setSelectedOrderTimeStamps} />
       </div>
     </div>
   );
