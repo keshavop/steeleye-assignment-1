@@ -14,6 +14,8 @@
 
 # Dashboard 
 
+### Dashboard is live - https://steeleye-assignment-1-lime.vercel.app
+
 This repository contains the questions and answers for the Dashboard assignment.
 
 ### Q1: In the title of the header, it displays `5 orders` but there are `6 orders` in the table. We want to display the `total` number of `orders` in the header title
@@ -48,6 +50,14 @@ import timeStampsData from "../src/assets/timeStamps.json";
 - Create a dropdown component to select the currency.
 - Pass the selected currency value to the OrdersTable component.
 - Use the selected currency value to format the order volume in the table accordingly.
+
+```js
+<Dropdown
+  options={["GBP", "USD", "JPY", "EUR"]}
+  onChange={(e) => setCurrency(e.target.value)}
+  selectedItem={currency}
+/>
+```
 
 
 ### Q4: Can you please add search feature on the order IDs with the search bar given in the header
